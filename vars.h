@@ -1,24 +1,28 @@
 #include <stdio.h> 
 
 
-int nbAvions = 0;
-typedef struct 
-{
-    char name[50];
-    
 
-}Aeropot;
-Aeropot aeropot[50];
-
+int nbAvions =0;
 typedef struct 
     {   
         char model[50];
-        int capacite[50];
-        
+        int capacite;
+        char status[50];
         int idAvions;
         
     } Planes;
 
-    Planes plane[100];
+typedef struct {
+    char name[50];
+    Planes plane[50];
+} Airport;
+
+Airport airport;
+
+int c_status ;
+
+char t_status[3][50] = {"Displonible" , "En maintenance" , "En vol"};
+
+
 
 

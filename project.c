@@ -7,6 +7,7 @@ int main(){
     int choix;
 do
 {
+// system("@cls||clear");
 
     printf("\n\n==========Menu===========\n\n");
     printf("1)-Ajouter un avion (ou plusieurs).\n");
@@ -27,15 +28,15 @@ do
         break;
 
     case 2:
-        
+        afficher();
         break;
 
     case 3:
-        
+        trier_cap();
         break;
 
     case 4:
-        
+        trier_mod();
         break;
 
     case 5:
