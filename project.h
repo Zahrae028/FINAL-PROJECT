@@ -13,15 +13,14 @@ void ajouter(){
     {   
         airport.plane[i].idAvions_n = i+1;
         printf("Entrez le modele d'avion numero %d :",i+1);
-        scanf("%s",airport.plane[i].model);
+        getchar();
+        scanf("%[^\n]",airport.plane[i].model);
 
-
-
-        printf("Entrez la capacite : ");
+        printf("\nEntrez la capacite : ");
         scanf("%d",&airport.plane[i].capacite);
 
         printf("Choisiez status :");
-        printf("1)Disponible \n2)En maintenance\n3)En vol");
+        printf("\n1)Disponible \n2)En maintenance\n3)En vol\n");
         scanf("%d",&c_status);
 
         switch (c_status)
@@ -57,6 +56,7 @@ void afficher(){
         printf(" le modele : %s\n",airport.plane[i].model);
         printf("la capacite : %d\n",airport.plane[i].capacite);
         printf("Statut : %s\n",airport.plane[i].status);
+        printf("\n");
     }
 }
 
@@ -138,13 +138,14 @@ void rech_mod(){
 
 
 }
-void rech_cap(){
-    int cap;
+
+void rech_id(){
+    int id;
     printf("inserer la capacite :");
-    scanf("%d",&cap);
+    scanf("%d",&id);
         for (int i = 0; i < nbAvions; i++)
         {
-            if (airport.plane[i].capacite == cap)
+            if (airport.plane[i].idAvions_n == id)
             {
                 printf("l'avion d' Id numero %03d :\n", airport.plane[i].idAvions_n);
                 printf(" le modele : %s\n",airport.plane[i].model);
@@ -243,10 +244,111 @@ void supprimer(){
                     strcpy(airport.plane[j].status , airport.plane[j+1].status);
 
                     nbAvions--;
+                    found++;
                 }
                 
             }
             
         }
+
+        if (found==0)
+        {
+            printf("id non trouvé.");
+        }
         
+        
+}
+void  largest(){
+    int index_largest = 0 ;
+    int largest = airport.plane[index_largest].capacite ;
+    
+    for (int i = 0; i < nbAvions; i++)
+    {
+        if (largest<airport.plane[i].capacite)
+        {
+            index_largest = i ;
+        }
+    }
+
+    printf("l'avion avec la plus grande capacité est :\n");
+    printf("l'avion d' Id numero %03d :\n", airport.plane[index_largest].idAvions_n);
+                printf(" le modele : %s\n",airport.plane[index_largest].model);
+                printf("la capacite : %d\n",airport.plane[index_largest].capacite);
+                printf("Statut : %s\n",airport.plane[index_largest].status);
+    
+}
+
+void  smallest(){
+    int index_smallest = 0 ;
+    int smallest = airport.plane[index_smallest].capacite ;
+    
+    for (int i = 0; i < nbAvions; i++)
+    {
+        if (smallest>airport.plane[i].capacite)
+        {
+            index_smallest = i ;
+        }
+    }
+
+    printf("l'avion avec la plus grande capacité est :\n");
+    printf("l'avion d' Id numero %03d :\n", airport.plane[index_smallest].idAvions_n);
+                printf(" le modele : %s\n",airport.plane[index_smallest].model);
+                printf("la capacite : %d\n",airport.plane[index_smallest].capacite);
+                printf("Statut : %s\n",airport.plane[index_smallest].status);
+    
+}
+
+void capacity_t(){
+    int sum = 0 ;
+    for (int i = 0; i < nbAvions; i++)
+    {
+        sum = sum + airport.plane[i].capacite ;
+    }
+    
+    printf("Capacité totale de la flotte : %d \n",sum);
+
+}
+
+void calcul_statu(){
+    
+
+    for (int i = 0; i < nbAvions; i++)
+    {
+        if (strcasecmp(airport.plane[i].status,t_status[0])==0)
+        {
+            disp++;
+        }
+        else if (strcasecmp(airport.plane[i].status,t_status[1])==0)
+        {
+            maint++;
+        }
+        else if (strcasecmp(airport.plane[i].status,t_status[2])==0)
+        {
+            vol++;
+        }
+        
+    }
+
+    printf("le nombre d'avions disponibles : %d \n",disp);
+    printf("le nombre d'avions en maintenance : %d \n",maint);
+    printf("le nombre d'avions en vol : %d \n",vol);
+    
+}
+
+void coefficient(){
+    int coeff ;
+    capacity_t();
+    coeff = (disp/nbAvions)*100;
+    printf("Le coefficient d'occupation du parc : %d ",coeff);
+}
+
+void statistiques(){
+
+    printf("Nombre total d'avions dans le parc : %d \n",nbAvions);
+    calcul_statu();
+    capacity_t();
+    largest();
+    smallest();
+    coefficient();
+
 }

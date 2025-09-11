@@ -7,6 +7,8 @@ int disp = 0 ;
 int vol = 0 ;
 int maint = 0;
 
+
+
 typedef struct 
     {
         char model[50];

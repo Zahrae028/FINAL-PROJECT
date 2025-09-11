@@ -7,6 +7,10 @@ int main(){
     int choix;
     int tri;
     int rech;
+
+    printf("Entrer le nom de l'aéroport : ");
+    scanf("%s",airport.name);
+
 do
 {
 // system("@cls||clear");
@@ -44,13 +48,13 @@ do
 
     case 5:
         
-        printf("choisir la mrthode de recherche : ");
-        printf("1) par capacite \n2) par model \n");
+        printf("choisir la methode de recherche : ");
+        printf("1) par ID \n2) par model \n");
         scanf("%d",&rech);
         switch (rech)
         {
         case 1:
-            rech_cap();
+            rech_id();
             break;
         case 2 :
             rech_mod();
@@ -86,7 +90,7 @@ do
         break;
 
     case 7:
-
+            statistiques();
         break;
 
     case 0:
