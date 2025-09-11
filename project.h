@@ -88,15 +88,12 @@ void ajouter()
 
 void trier_date(){
 
+
     for (int i = 0; i < nbAvions; i++)
     {
-        
-    
-    for (int i = 0; i < nbAvions; i++)
-    {
-        for (int j = i+1; i < nbAvions; i++)
+        for (int j = i+1; j < nbAvions; j++)
         {
-            if((airport.plane[i].date.annee >airport.plane[j].date.annee )|| (airport.plane[i].date.annee == airport.plane[j].date.annee && airport.plane[i].date.mois > airport.plane[j].date.mois) || (airport.plane[i].date.annee == airport.plane[i].date.annee && airport.plane[i].date.mois == airport.plane[i].date.mois && airport.plane[i].date.jour > airport.plane[j].date.jour))
+            if((airport.plane[i].date.annee >airport.plane[j].date.annee )|| (airport.plane[i].date.annee == airport.plane[j].date.annee && airport.plane[i].date.mois > airport.plane[j].date.mois) || (airport.plane[i].date.annee == airport.plane[j].date.annee && airport.plane[i].date.mois == airport.plane[j].date.mois && airport.plane[i].date.jour > airport.plane[j].date.jour))
             {
                 int temp = airport.plane[i].capacite;
                 airport.plane[i].capacite = airport.plane[j].capacite;
@@ -134,7 +131,7 @@ void trier_date(){
             }
         }
         
-    }
+    
     
         
 
@@ -170,7 +167,8 @@ void modifier()
 
             found++;
             printf("Modifier le modele %d :", nbAvions + 1);
-            scanf("%s", airport.plane[i].model);
+            getchar();
+            scanf("%[^\n]", airport.plane[i].model);
 
             do
                 {
@@ -260,7 +258,7 @@ void rech_id()
     printf("inserer l' ID :");
     scanf("%d", &id);
     for (int i = 0; i < nbAvions; i++)
-    {
+    {   
         if (airport.plane[i].idAvions_n == id)
         {
             found++;
@@ -271,7 +269,12 @@ void rech_id()
             printf("La date d'entree : %d/%d/%d \n",airport.plane[i].date.jour ,airport.plane[i].date.mois ,airport.plane[i].date.annee);
         }
     }
-    printf("id non trouvé.");
+    if (found==0)
+    {
+        printf("id non trouvé.");
+    }
+    
+    
 }
 
 void trier_mod()
@@ -281,7 +284,7 @@ void trier_mod()
     {
         for (int j = i + 1; j < nbAvions; j++)
         {
-            if (strcmp(airport.plane[i].model, airport.plane[j].model) > 0)
+            if (strcasecmp(airport.plane[i].model, airport.plane[j].model) > 0)
             {
                 int temp = airport.plane[i].capacite;
                 airport.plane[i].capacite = airport.plane[j].capacite;
@@ -390,9 +393,11 @@ void supprimer()
 
                 airport.plane[j].date.annee = airport.plane[j + 1].date.annee ;
 
-                nbAvions--;
-                found++;
+                
+                
             }
+            found++;
+            nbAvions--;
         }
     }
 
@@ -410,11 +415,12 @@ void largest()
     {
         if (largest < airport.plane[i].capacite)
         {
+            largest = airport.plane[i].capacite;
             index_largest = i;
         }
     }
 
-    printf("l'avion avec la plus grande capacité est :\n");
+    printf("\nl'avion avec la plus grande capacite est :\n");
     printf("l'avion d' Id numero %03d :\n", airport.plane[index_largest].idAvions_n);
     printf(" le modele : %s\n", airport.plane[index_largest].model);
     printf("la capacite : %d\n", airport.plane[index_largest].capacite);
@@ -431,11 +437,12 @@ void smallest()
     {
         if (smallest > airport.plane[i].capacite)
         {
+            smallest =airport.plane[i].capacite ;
             index_smallest = i;
         }
     }
 
-    printf("l'avion avec la plus grande capacité est :\n");
+    printf("\nl'avion avec la plus petite capacite est :\n");
     printf("l'avion d' Id numero %03d :\n", airport.plane[index_smallest].idAvions_n);
     printf(" le modele : %s\n", airport.plane[index_smallest].model);
     printf("la capacite : %d\n", airport.plane[index_smallest].capacite);
@@ -451,11 +458,14 @@ void capacity_t()
         sum = sum + airport.plane[i].capacite;
     }
 
-    printf("Capacité totale de la flotte : %d \n", sum);
+    printf("\n Capacite totale de la flotte : %d \n", sum);
 }
 
 void calcul_statu()
 {
+    disp = 0 ;
+    vol = 0 ;
+    maint = 0;
 
     for (int i = 0; i < nbAvions; i++)
     {
@@ -480,17 +490,17 @@ void calcul_statu()
 
 void coefficient()
 {
-    int coeff;
+    calcul_statu();
+    float coeff;
     capacity_t();
-    coeff = (disp / nbAvions) * 100;
-    printf("Le coefficient d'occupation du parc : %d ", coeff);
+    coeff = ((float)disp / nbAvions) * 100;
+    printf("\nLe coefficient d'occupation du parc : %.2f %% \n", coeff);
 }
 
 void statistiques()
 {
-
+    printf("======================================");
     printf("Nombre total d'avions dans le parc : %d \n", nbAvions);
-    calcul_statu();
     capacity_t();
     largest();
     smallest();

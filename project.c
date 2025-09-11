@@ -8,7 +8,8 @@ int main()
     int rech;
 
     printf("Entrer le nom de l'aeroport : ");
-    scanf("%s", airport.name);
+    getchar();
+    scanf("%[^\n]", airport.name);
 
     do
     {
@@ -47,7 +48,7 @@ int main()
 
         case 5:
 
-            printf("choisir la methode de recherche : ");
+            printf("choisir la methode de recherche : \n");
             printf("1) par ID \n2) par model \n");
             scanf("%d", &rech);
             switch (rech)
@@ -96,7 +97,7 @@ int main()
             break;
 
         case 0:
-            printf("Merci beaucoup d'avoir utilisé notre programme!!!");
+            printf("Merci beaucoup d'avoir utilise notre programme!!!");
             break;
 
         default:

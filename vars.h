@@ -3,9 +3,9 @@
 
 
 int nbAvions =0;
-int disp = 0 ;
-int vol = 0 ;
-int maint = 0;
+int disp  ;
+int vol ;
+int maint ;
 
 
 typedef struct {
