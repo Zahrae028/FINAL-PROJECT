@@ -5,22 +5,25 @@
 
 int main(){
     int choix;
+    int tri;
+    int rech;
 do
 {
 // system("@cls||clear");
 
     printf("\n\n==========Menu===========\n\n");
-    printf("1)-Ajouter un avion (ou plusieurs).\n");
-    printf("2)-Modifier un avion (modele, capacité, statut).\n");
+    printf("1)-Ajouter un avion (ou plusieurs) .\n");
+    printf("2)-Modifier un avion (modele, capacité, statut) .\n");
     printf("3)-Supprimer un avion .\n");
     printf("4)-Afficher la liste des avions.\n");
-    printf("5)-Rechercher un avion (par id ou par modèle).\n");
-    printf("6)-Trier les avions (par capacité, par modèle alphabétique,).\n");
+    printf("5)-Rechercher un avion (par id ou par modele) .\n");
+    printf("6)-Trier les avions (par capacite, par modele alphabetique,) .\n");
+    printf("7)-Statistiaues . \n");
     printf("0)-Quitter .\n");
 
     printf("choisiez : ");
     scanf("%d",&choix);
-    
+
     switch (choix)
     {
     case 1:
@@ -28,31 +31,75 @@ do
         break;
 
     case 2:
-        afficher();
+        modifier();
         break;
 
     case 3:
-        trier_cap();
+        supprimer();
         break;
 
     case 4:
-        trier_mod();
+        afficher();
         break;
 
     case 5:
         
+        printf("choisir la mrthode de recherche : ");
+        printf("1) par capacite \n2) par model \n");
+        scanf("%d",&rech);
+        switch (rech)
+        {
+        case 1:
+            rech_cap();
+            break;
+        case 2 :
+            rech_mod();
+            break;
+        default:
+            printf("pas une option disponible .");
+            break;
+        }
         break;
 
     case 6:
         
+        
+        printf("choisir la methode de tri : ");
+        printf("1) par capacite \n2) par model \n");
+        scanf("%d",&tri);
+
+            switch (tri)
+            {
+            case 1:
+                trier_cap();
+                afficher();
+                break;
+            case 2 :
+                trier_mod();
+                afficher();
+                break;
+            default:
+                printf("pas une option disponible .");
+                break;
+            }
+            
         break;
-    
+
+    case 7:
+
+        break;
+
+    case 0:
+            printf("Merci beaucoup d'avoir utilisé notre programme!!!");
+        break;
+
+
     default:
         break;
 
     }
 
-    
+
 
 } while (choix!=0);
     return 0;
