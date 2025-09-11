@@ -141,6 +141,7 @@ void trier_date(){
 
 void afficher()
 {
+    printf("Aeroport de %s \n",airport.name);
     for (int i = 0; i < nbAvions; i++)
     {
         printf("l'avion d' Id numero %03d :\n", airport.plane[i].idAvions_n);
