@@ -2,10 +2,7 @@
 #include <string.h>
 #include "vars.h"
 
-void ajouter_date(){
-        
 
-}
 void ajouter()
 {
     if (nbAvions < 100)
@@ -62,15 +59,23 @@ void ajouter()
                         break;
 
                     default:
-                        printf("invalid. ressayez.");
+                        printf("invalid. ressayez.\n");
                         invalid++;
                         break;
                     }
                 } while (invalid != 0);
 
+                do{
+                    printf("Entrez ma date d'entree (jj/mm/aaaa) :\n");
+                    scanf("%d/%d/%d",&airport.plane[i].date.jour ,&airport.plane[i].date.mois ,&airport.plane[i].date.annee);
+                    if (airport.plane[i].date.mois >12 || airport.plane[i].date.jour > 31)
+                    {
+                        printf("Invalide date !!!!!!\n");
+                    }
+                    
+                }while (airport.plane[i].date.mois >12 || airport.plane[i].date.jour > 31);
+                
 
-                printf("Entrez ma date d'entree (jj/mm/aaaa)");
-                scanf("%d/%d/%d",airport.plane[i].date.jour ,airport.plane[i].date.mois ,airport.plane[i].date.annee);
             }
             nbAvions = nbAvions + n;
         }
@@ -81,6 +86,60 @@ void ajouter()
     }
 }
 
+void trier_date(){
+
+    for (int i = 0; i < nbAvions; i++)
+    {
+        
+    
+    for (int i = 0; i < nbAvions; i++)
+    {
+        for (int j = i+1; i < nbAvions; i++)
+        {
+            if((airport.plane[i].date.annee >airport.plane[j].date.annee )|| (airport.plane[i].date.annee == airport.plane[j].date.annee && airport.plane[i].date.mois > airport.plane[j].date.mois) || (airport.plane[i].date.annee == airport.plane[i].date.annee && airport.plane[i].date.mois == airport.plane[i].date.mois && airport.plane[i].date.jour > airport.plane[j].date.jour))
+            {
+                int temp = airport.plane[i].capacite;
+                airport.plane[i].capacite = airport.plane[j].capacite;
+                airport.plane[j].capacite = temp;
+
+                int temp2 = airport.plane[i].idAvions_n;
+                airport.plane[i].idAvions_n = airport.plane[j].idAvions_n;
+                airport.plane[j].idAvions_n = temp2;
+
+                char s[50];
+                strcpy(s, airport.plane[i].model);
+                strcpy(airport.plane[i].model, airport.plane[j].model);
+                strcpy(airport.plane[j].model, s);
+
+                char k[50];
+                strcpy(k, airport.plane[i].status);
+                strcpy(airport.plane[i].status, airport.plane[j].status);
+                strcpy(airport.plane[j].status, k);
+
+                int date_a = airport.plane[i].date.annee;
+                airport.plane[i].date.annee = airport.plane[j].date.annee ;
+                airport.plane[j].date.annee = date_a ;
+
+                int date_m = airport.plane[i].date.mois;
+                airport.plane[i].date.mois = airport.plane[j].date.mois ;
+                airport.plane[j].date.mois = date_m ;
+
+                int date_j = airport.plane[i].date.jour;
+                airport.plane[i].date.jour = airport.plane[j].date.jour ;
+                airport.plane[j].date.jour = date_j ;
+
+            // printf("%d/%d/%d est plus tôt que %d/%d/%d ",airport.plane[i].date.jour,month1,year1,day2,month2,year2);
+
+
+            }
+        }
+        
+    }
+    
+        
+
+    }
+}
 
 
 void afficher()
@@ -149,6 +208,15 @@ void modifier()
                     break;
             }
             } while (invalid != 0);
+            do{
+                    printf("Modifier ma date d'entree (jj/mm/aaaa) :\n");
+                    scanf("%d/%d/%d",&airport.plane[i].date.jour ,&airport.plane[i].date.mois ,&airport.plane[i].date.annee);
+                    if (airport.plane[i].date.mois >12 || airport.plane[i].date.jour > 31)
+                    {
+                        printf("Invalide date !!!!!!\n");
+                    }
+                    
+                }while (airport.plane[i].date.mois >12 || airport.plane[i].date.jour > 31);
         }
     }
 
@@ -175,6 +243,7 @@ void rech_mod()
             printf(" le modele : %s\n", airport.plane[i].model);
             printf("la capacite : %d\n", airport.plane[i].capacite);
             printf("Statut : %s\n", airport.plane[i].status);
+            printf("La date d'entree : %d/%d/%d \n",airport.plane[i].date.jour ,airport.plane[i].date.mois ,airport.plane[i].date.annee);
         }
     }
 
@@ -199,6 +268,7 @@ void rech_id()
             printf(" le modele : %s\n", airport.plane[i].model);
             printf("la capacite : %d\n", airport.plane[i].capacite);
             printf("Statut : %s\n", airport.plane[i].status);
+            printf("La date d'entree : %d/%d/%d \n",airport.plane[i].date.jour ,airport.plane[i].date.mois ,airport.plane[i].date.annee);
         }
     }
     printf("id non trouvé.");
@@ -230,6 +300,18 @@ void trier_mod()
                 strcpy(k, airport.plane[i].status);
                 strcpy(airport.plane[i].status, airport.plane[j].status);
                 strcpy(airport.plane[j].status, k);
+
+                int date_a = airport.plane[i].date.annee;
+                airport.plane[i].date.annee = airport.plane[j].date.annee ;
+                airport.plane[j].date.annee = date_a ;
+
+                int date_m = airport.plane[i].date.mois;
+                airport.plane[i].date.mois = airport.plane[j].date.mois ;
+                airport.plane[j].date.mois = date_m ;
+
+                int date_j = airport.plane[i].date.jour;
+                airport.plane[i].date.jour = airport.plane[j].date.jour ;
+                airport.plane[j].date.jour = date_j ;
             }
         }
     }
@@ -261,10 +343,24 @@ void trier_cap()
                 strcpy(k, airport.plane[i].status);
                 strcpy(airport.plane[i].status, airport.plane[j].status);
                 strcpy(airport.plane[j].status, k);
+
+                int date_a = airport.plane[i].date.annee;
+                airport.plane[i].date.annee = airport.plane[j].date.annee ;
+                airport.plane[j].date.annee = date_a ;
+
+                int date_m = airport.plane[i].date.mois;
+                airport.plane[i].date.mois = airport.plane[j].date.mois ;
+                airport.plane[j].date.mois = date_m ;
+
+                int date_j = airport.plane[i].date.jour;
+                airport.plane[i].date.jour = airport.plane[j].date.jour ;
+                airport.plane[j].date.jour = date_j ;
             }
         }
     }
 }
+
+
 
 void supprimer()
 {
@@ -287,6 +383,12 @@ void supprimer()
                 strcpy(airport.plane[j].model, airport.plane[j + 1].model);
 
                 strcpy(airport.plane[j].status, airport.plane[j + 1].status);
+
+                airport.plane[j].date.jour = airport.plane[j + 1].date.jour ;
+
+                airport.plane[j].date.mois = airport.plane[j + 1].date.mois ;
+
+                airport.plane[j].date.annee = airport.plane[j + 1].date.annee ;
 
                 nbAvions--;
                 found++;
@@ -317,6 +419,7 @@ void largest()
     printf(" le modele : %s\n", airport.plane[index_largest].model);
     printf("la capacite : %d\n", airport.plane[index_largest].capacite);
     printf("Statut : %s\n", airport.plane[index_largest].status);
+    printf("La date d'entree : %d/%d/%d \n",airport.plane[index_largest].date.jour ,airport.plane[index_largest].date.mois ,airport.plane[index_largest].date.annee);
 }
 
 void smallest()
@@ -337,6 +440,7 @@ void smallest()
     printf(" le modele : %s\n", airport.plane[index_smallest].model);
     printf("la capacite : %d\n", airport.plane[index_smallest].capacite);
     printf("Statut : %s\n", airport.plane[index_smallest].status);
+    printf("La date d'entree : %d/%d/%d \n",airport.plane[index_smallest].date.jour ,airport.plane[index_smallest].date.mois ,airport.plane[index_smallest].date.annee);
 }
 
 void capacity_t()

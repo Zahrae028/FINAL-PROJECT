@@ -7,7 +7,7 @@ int main()
     int tri;
     int rech;
 
-    printf("Entrer le nom de l'aéroport : ");
+    printf("Entrer le nom de l'aeroport : ");
     scanf("%s", airport.name);
 
     do
@@ -20,7 +20,7 @@ int main()
         printf("3)-Supprimer un avion .\n");
         printf("4)-Afficher la liste des avions.\n");
         printf("5)-Rechercher un avion (par id ou par modele) .\n");
-        printf("6)-Trier les avions (par capacite, par modele alphabetique,) .\n");
+        printf("6)-Trier les avions (par capacite, par modele alphabetique,par date d'entree) .\n");
         printf("7)-Statistiaues . \n");
         printf("0)-Quitter .\n");
 
@@ -67,7 +67,7 @@ int main()
         case 6:
 
             printf("choisir la methode de tri : ");
-            printf("1) par capacite \n2) par model \n");
+            printf("1) par capacite \n2) par model \n3) par date d'entree");
             scanf("%d", &tri);
 
             switch (tri)
@@ -78,6 +78,10 @@ int main()
                 break;
             case 2:
                 trier_mod();
+                afficher();
+                break;
+            case 3:
+                trier_date();
                 afficher();
                 break;
             default:
