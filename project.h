@@ -2,6 +2,10 @@
 #include <string.h>
 #include "vars.h"
 
+void ajouter_date(){
+        
+
+}
 void ajouter()
 {
     if (nbAvions < 100)
@@ -27,11 +31,11 @@ void ajouter()
 
                 do
                 {
-                    printf("\nEntrez la capacite : ");
+                    printf("Entrez la capacite : ");
                     scanf("%d", &airport.plane[i].capacite);
                     if (airport.plane[i].capacite < 0)
                     {
-                        printf("Veuile");
+                        printf("Veuilez ressayer");
                     }
 
                 } while (airport.plane[i].capacite < 0);
@@ -39,7 +43,7 @@ void ajouter()
                 do
                 {
                     invalid--;
-                    printf("Choisiez status :");
+                    printf("Choisiez status :\n");
                     printf("\n1)Disponible \n2)En maintenance\n3)En vol\n");
                     scanf("%d", &c_status);
 
@@ -63,6 +67,10 @@ void ajouter()
                         break;
                     }
                 } while (invalid != 0);
+
+
+                printf("Entrez ma date d'entree (jj/mm/aaaa)");
+                scanf("%d/%d/%d",airport.plane[i].date.jour ,airport.plane[i].date.mois ,airport.plane[i].date.annee);
             }
             nbAvions = nbAvions + n;
         }
@@ -73,6 +81,8 @@ void ajouter()
     }
 }
 
+
+
 void afficher()
 {
     for (int i = 0; i < nbAvions; i++)
@@ -81,7 +91,9 @@ void afficher()
         printf(" le modele : %s\n", airport.plane[i].model);
         printf("la capacite : %d\n", airport.plane[i].capacite);
         printf("Statut : %s\n", airport.plane[i].status);
-        printf("\n");
+        printf("La date d'entree : %d/%d/%d \n",airport.plane[i].date.jour ,airport.plane[i].date.mois ,airport.plane[i].date.annee);
+        printf("\n======================================\n");
+
     }
 }
 
@@ -101,30 +113,42 @@ void modifier()
             printf("Modifier le modele %d :", nbAvions + 1);
             scanf("%s", airport.plane[i].model);
 
-            printf("Modifier la capacite : ");
-            scanf("%d", &airport.plane[i].capacite);
+            do
+                {
+                    printf("\nModifier la capacite : ");
+                    scanf("%d", &airport.plane[i].capacite);
+                    if (airport.plane[i].capacite < 0)
+                    {
+                        printf("Veuilez ressayer");
+                    }
 
-            printf("Modifier le status :");
-            printf("1)Disponible \n2)En maintenance\n3)En vol");
-            scanf("%d", &c_status);
+                } while (airport.plane[i].capacite < 0);
 
-            switch (c_status)
-            {
-            case 1:
-                strcpy(airport.plane[i].status, t_status[0]);
-                break;
+            int invalid = 1;
+            do{
+                invalid--;
+                printf("Modifier le status :\n");
+                printf("1)Disponible \n2)En maintenance\n3)En vol");
+                scanf("%d", &c_status);
 
-            case 2:
-                strcpy(airport.plane[i].status, t_status[1]);
-                break;
+                switch (c_status)
+                {
+                case 1:
+                    strcpy(airport.plane[i].status, t_status[0]);
+                    break;
 
-            case 3:
-                strcpy(airport.plane[i].status, t_status[2]);
-                break;
+                case 2:
+                    strcpy(airport.plane[i].status, t_status[1]);
+                    break;
 
-            default:
-                break;
+                case 3:
+                    strcpy(airport.plane[i].status, t_status[2]);
+                    break;
+
+                default:
+                    break;
             }
+            } while (invalid != 0);
         }
     }
 

@@ -8,6 +8,11 @@ int vol = 0 ;
 int maint = 0;
 
 
+typedef struct {
+    int jour;
+    int mois;
+    int annee;
+}Date;
 
 typedef struct 
     {
@@ -15,6 +20,7 @@ typedef struct
         int capacite;
         char status[50];
         int idAvions_n;
+        Date date;
 
     } Planes;
 
