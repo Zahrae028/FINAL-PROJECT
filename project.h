@@ -186,7 +186,7 @@ void modifier()
             do{
                 invalid--;
                 printf("Modifier le status :\n");
-                printf("1)Disponible \n2)En maintenance\n3)En vol");
+                printf("1)Disponible \n2)En maintenance\n3)En vol\n");
                 scanf("%d", &c_status);
 
                 switch (c_status)
@@ -443,7 +443,7 @@ void smallest()
         }
     }
 
-    printf("\nl'avion avec la plus petite capacite est :\n");
+    printf("\n\nl'avion avec la plus petite capacite est :\n");
     printf("l'avion d' Id numero %03d :\n", airport.plane[index_smallest].idAvions_n);
     printf(" le modele : %s\n", airport.plane[index_smallest].model);
     printf("la capacite : %d\n", airport.plane[index_smallest].capacite);

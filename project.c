@@ -67,8 +67,8 @@ int main()
 
         case 6:
 
-            printf("choisir la methode de tri : ");
-            printf("1) par capacite \n2) par model \n3) par date d'entree");
+            printf("choisir la methode de tri : \n");
+            printf("1) par capacite \n2) par model \n3) par date d'entree\n");
             scanf("%d", &tri);
 
             switch (tri)
