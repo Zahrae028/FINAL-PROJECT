@@ -40,7 +40,7 @@ void ajouter()
                 do
                 {
                     invalid--;
-                    printf("Choisiez status :\n");
+                    printf("Choisiez status :");
                     printf("\n1)Disponible \n2)En maintenance\n3)En vol\n");
                     scanf("%d", &c_status);
 
@@ -423,7 +423,7 @@ void largest()
 
     printf("\nl'avion avec la plus grande capacite est :\n");
     printf("l'avion d' Id numero %03d :\n", airport.plane[index_largest].idAvions_n);
-    printf(" le modele : %s\n", airport.plane[index_largest].model);
+    printf("le modele : %s\n", airport.plane[index_largest].model);
     printf("la capacite : %d\n", airport.plane[index_largest].capacite);
     printf("Statut : %s\n", airport.plane[index_largest].status);
     printf("La date d'entree : %d/%d/%d \n",airport.plane[index_largest].date.jour ,airport.plane[index_largest].date.mois ,airport.plane[index_largest].date.annee);
@@ -442,9 +442,10 @@ void smallest()
             index_smallest = i;
         }
     }
+    
 
-    printf("\n\nl'avion avec la plus petite capacite est :\n");
-    printf("l'avion d' Id numero %03d :\n", airport.plane[index_smallest].idAvions_n);
+    printf("\nl'avion avec la plus petite capacite est :\n");
+    printf("\nl'avion d' Id numero %03d :\n", airport.plane[index_smallest].idAvions_n);
     printf(" le modele : %s\n", airport.plane[index_smallest].model);
     printf("la capacite : %d\n", airport.plane[index_smallest].capacite);
     printf("Statut : %s\n", airport.plane[index_smallest].status);
@@ -501,7 +502,7 @@ void coefficient()
 void statistiques()
 {
     printf("======================================");
-    printf("Nombre total d'avions dans le parc : %d \n", nbAvions);
+    printf("\nNombre total d'avions dans le parc : %d \n", nbAvions);
     capacity_t();
     largest();
     smallest();
