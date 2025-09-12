@@ -101,6 +101,8 @@ int main()
             break;
 
         default:
+            printf("pas une option disponible .");
+            
             break;
         }
 
